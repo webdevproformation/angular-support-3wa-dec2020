@@ -93,4 +93,67 @@ afficher dans le composant le code html suivant
 </article>
 
 
+---------------------------
+
+dans le fichier de service 
+
+export interface FilmInterface{
+    id : number,
+    nom : string,
+    description : string
+}
+
+export class FilmsService{
+    getFilms() : Array<FilmInterface>{
+        return [
+            { id : 1 , nom : "Terminator" , description: "lorem ipsum"},
+            { id : 2 , nom : "Prédator" , description: "lorem ipsum"},
+            { id : 3 , nom : "2001 Odyssée espace" , description: "lorem ipsum"}
+        ]
+    }
+}
+
+---------------------------
+dans le fichier de composant 
+
+import { Component, OnInit } from '@angular/core';
+import { FilmsService , FilmInterface } from './../services/films.service';
+
+@Component({
+  selector: 'troisieme',
+  templateUrl: './troisieme.component.html',
+  styleUrls: ['./troisieme.component.scss']
+})
+export class TroisiemeComponent implements OnInit {
+  films : Array<FilmInterface>
+  constructor() { 
+    let f = new FilmsService();
+    this.films = f.getFilms();
+  }
+
+  ngOnInit(): void {
+  }
+
+}
+
+// dans le fichier de vue du composant 
+
+<section>
+    <article *ngFor="let film of films">
+        <h2>{{ film.nom }}</h2>
+        <p>{{ film.description }}</p>
+        <a href="{{film.id}}">voir le film</a>
+    </article>
+</section>
+
+// dans le fichier de style de la vue du composant 
+
+section{
+    display : grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap:10px;
+}
+section article{
+    border:1px solid grey
+}
 
