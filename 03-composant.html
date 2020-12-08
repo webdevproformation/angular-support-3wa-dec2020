@@ -1,0 +1,70 @@
+pour créer des composants
+
+créer un composant manuellement ( pour bien comprendre )
+
+
+dans le dossier /src/app/
+1 créer un fichier premier.component.ts 
+
+2 remplir le fichier 
+import{ Component } from "@angular/core"
+
+@Component({
+    selector : "premier",
+    template : "<h1>je suis le composant premier</h1>"
+})
+export class PremierComponent{  }
+
+=> transformer notre class en un composant Angular 
+décorer la class @Component
+
+// maintenant que l'on a crée le composant 
+// ce composant est un enfant du composant app.component.ts 
+
+// export avant la class => utiliser dans un autre fichier ts 
+
+3 déclarer dans notre application 
+déclarer notre composant => src/app/app.module.ts 
+
+importer notre composant 
+3.1import { PremierComponent } from "./premier.component" ;
+
+3.2 ajouter dans le décorateur 
+
+@NgModule({
+    declarations: [
+      AppComponent , 
+      PremierComponent // déclarer notre composant 
+    ],
+
+// on peut désormais l'utiliser n'importe où dans notre application Angular 
+
+4 utiliser notre composant pour l'afficher 
+
+// src/app/app.component.html 
+ajouter à la suite des balises 
+<premier></premier>
+
+// ------------------------------
+
+// cas pratique 
+// créer le composant deuxieme 
+
+// avoir le secteur deuxieme 
+// afficher le texte <h2>je suis le deuxième composant</h2>
+
+// déclarer ce composant dans app.module.ts 
+
+// l'afficher via le fichier app.component.html  à la suite du composat premier
+
+
+---------------------------
+
+créer un composant client via le client (et ligne de commande)
+ng generate component nom-composant
+ng g c nom-composant
+ng g c nom-compose 
+
+lorsque vous créez des composants 
+
+ng g c dossier/nom-composant
