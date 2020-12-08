@@ -95,6 +95,7 @@ ng g c boutons
 
 
 import { Component, OnInit } from '@angular/core';
+
 @Component({
   selector: 'app-boutons',
   template: `
@@ -106,7 +107,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./boutons.component.scss']
 })
 export class BoutonsComponent implements OnInit {
-  btn1 : {} = {
+  btn1 : {texte : string , style: {}} = {
     texte : "valider",
     style : {
       background : "blue",
@@ -116,8 +117,9 @@ export class BoutonsComponent implements OnInit {
       color : "white",
       marginRight : "5px"
     }
-  }
-  btn2 : {} = {
+  };
+
+  btn2 : {texte : string , style: {}} = {
     texte : "reset",
     style : {
       background : "orange",
@@ -126,7 +128,8 @@ export class BoutonsComponent implements OnInit {
       border: "none",
       color : "white"
     }
-  }
+  };
+
   constructor() { }
 
   ngOnInit(): void {
