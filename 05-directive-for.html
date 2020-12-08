@@ -69,10 +69,44 @@ formation = [
 ];
 
 modifier la vue ajouter à la suite le code html suivant :
+<div>
+    <h1>"javascript"</h1>
+    <button>afficher le projet n° 1</button>
+</div>
+<div>
+    <h1>"Angular"</h1>
+    <button>afficher le projet n° 2</button>
+</div>
 
-<h1>"javascript"</h1>
-<button>afficher le projet n° 1</button>
+dans le fichier src/app/directive/directive.component.ts
 
-<h1>"Angular"</h1>
-<button>afficher le projet n° 2</button>
+export class DirectiveComponent implements OnInit {
 
+    liste: Array<string> = ["lundi", "mardi", "mercredi"] ;
+  
+    formation : Array<{id:number , matiere:string }> = [
+      { 
+          id : 1 ,
+          matiere : "javascript"
+      },
+      {
+          id : 2 ,
+          matiere : "Angular"
+      }
+    ];
+    constructor() { }
+  
+    ngOnInit(): void {
+    }
+  }
+
+
+dans le fichier src/app/directive/directive.component.html
+
+<div *ngFor="let f of formation">
+    <h1>{{ f.matiere }}</h1>
+    <!-- premiere manière pour le bouton -->
+    <button>afficher le projet n° {{ f.id }}</button>
+    <!-- deuxème manière pour le bouton -->
+    <button> {{ "afficher le projet n° " + f.id }}</button>
+</div>
