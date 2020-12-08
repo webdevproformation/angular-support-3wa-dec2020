@@ -48,14 +48,28 @@ ajouter à la suite des balises
 // ------------------------------
 
 // cas pratique 
-// créer le composant deuxieme 
-
+// créer le composant src/app/deuxieme.component.ts
 // avoir le secteur deuxieme 
 // afficher le texte <h2>je suis le deuxième composant</h2>
+---------------------------------------
+
+import { Component } from '@angular/core';
+
+@Component({
+    selector : "deuxieme" , // nom de la balise à utiliser dans les vues (dans les fichiers .html)
+    template: "<h2>je suis le deuxième composant</h2>"
+})
+export class DeuxiemeComponent{}
+
+---------------------------------------
 
 // déclarer ce composant dans app.module.ts 
 
-// l'afficher via le fichier app.component.html  à la suite du composat premier
+import { DeuxiemeComponent } from './deuxieme.component';
+ + déclarer le composant  dans le tableau declarations[ , DeuxiemeComponent ]
+
+
+// l'afficher via le fichier app.component.html  à la suite du composant premier
 
 
 ---------------------------
@@ -68,3 +82,34 @@ ng g c nom-compose
 lorsque vous créez des composants 
 
 ng g c dossier/nom-composant
+
+// vous devez lancer un deuxième terminal 
+// bien vérifier le path => C:\Users\HP\Desktop\app-music cd 
+// ng g c troisieme
+
+CREATE src/app/troisieme/troisieme.component.html (24 bytes)
+CREATE src/app/troisieme/troisieme.component.ts (288 bytes)
+CREATE src/app/troisieme/troisieme.component.scss (0 bytes)
+UPDATE src/app/app.module.ts (572 bytes)
+
+// créer 3 fichiers + mis à jour du fichier app.module.ts
+
+// réaliser 2 étapes importantes 
+// créer le composant 
+// déclarer 
+
+// pour le développeur => utiliser le composant 
+<app-troisieme></app-troisieme>
+
+-------------------------------------------
+
+// je viens de créer un composant manuelle ou via l'invite de commande 
+
+// supprimer ?? le composant premier 
+// il n'existe pas de commande => uniquement à la main 
+
+// vue => app.component.html supprimer la balise 
+// app.module.ts => déclaration et l'import 
+// supprimer le fichier premier.composant.ts
+
+-------------------------------------------
