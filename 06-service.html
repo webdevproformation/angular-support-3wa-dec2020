@@ -66,3 +66,31 @@ dans le constructor de la class
     <p>{{ "nom " + c.nom }}</p>
     <p>{{ "adresse " + c.adresse }}</p>
 </div>
+
+// cas pratique :
+
+// créer un nouveau service => à stocker dans le dossier 
+// app/services 
+
+// films.services.ts 
+
+ce fichier contient une class FilmService qui possède une méthode 
+    getFilms
+        retourn un tableau suivant 
+            { id : 1 , nom : "Terminator" , description: "lorem ipsum"},
+            { id : 2 , nom : "Prédator" , description: "lorem ipsum"},
+            { id : 3 , nom : "2001 Odyssée espace" , description: "lorem ipsum"},
+
+    et une interface nommé FilmInterface
+
+// importer dans le composant troisième  
+
+afficher dans le composant le code html suivant  
+<article>
+    <h2>titre du film</h2>
+    <p>description</p>
+    <a href="id">voir le film</a>
+</article>
+
+
+
