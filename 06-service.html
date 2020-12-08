@@ -1,0 +1,68 @@
+// nous avons créer une nouvelle propriété dans la class Directive 
+// bien 
+
+// le problème ces données disponibles uniquement cette class 
+
+// sortir les données de la class et le stocker dans un autre type de class
+// services
+
+// commme pour les composants, on peut créer des services de deux manières différentes
+
+manuellement 
+
+via le client 
+ng g service nom-service
+
+
+pour éviter de créer un dossier services dans le dossier app 
+et ainsi on va stocker tous les services dedans 
+
+dans ce dossier créer un fichier data.service.ts
+
+interface Client{
+    id : number , 
+    nom : string, 
+    adresse : string
+}
+
+export class DataService {
+    getData() : Array<Client>{
+        return [
+            {
+                id : 1,
+                nom : "Alain",
+                adresse : "75 rue du Paradis Paris"
+            },
+            {
+                id : 1,
+                nom : "Charles",
+                adresse : "77 rue du Paradis Paris"
+            }
+        ]
+    }
+};
+
+// créer notre service => utiliser ces données dans le composant Directive 
+
+// src/app/directive/directive.component.ts 
+
+import { DataService } from '../services/data.service';
+
+dans le constructor de la class 
+
+    client : Array<Client>;
+    constructor() { 
+      let d  = new DataService();
+      this.client = d.getData();
+    }
+
+// utiliser les données dans la vue du composant 
+// src/app/directive/directive.component.html
+
+<hr>
+
+<div *ngFor="let c of client">
+    <p>{{ "id " + c.id }}</p>
+    <p>{{ "nom " + c.nom }}</p>
+    <p>{{ "adresse " + c.adresse }}</p>
+</div>
