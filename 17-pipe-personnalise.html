@@ -56,3 +56,21 @@ créer un nouveau pipe img => pas de paramètre
 permettre de préfixer les images par le mot "assets/"+ nom du fichier.jpg 
 
 ng g p img 
+
+
+import { Pipe, PipeTransform } from '@angular/core';
+
+@Pipe({
+  name: 'img'
+})
+export class ImgPipe implements PipeTransform {
+
+  transform(image: string): string {
+    return `assets/${image}`;
+  }
+
+}
+
+// dans la vue du composant Film 
+
+<img [src]="affiche | img " alt="" class="img-thumbnail img-fluid">
