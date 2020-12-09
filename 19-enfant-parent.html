@@ -22,7 +22,7 @@ changeNbLike(){
 // changeNbLike => exécutée par une méthode dans l'enfant  
 // parent.html 
 // dans la balise qui appelle l'enfant 
-<app-enfant [dataFromParent]="meta" (change)="changeNbLike()"></app-enfant>
+<app-enfant [dataFromParent]="meta" (change)="changeNbLike() ; "></app-enfant>
 
 // dans le enfant.ts 
 import { Component, Input, OnInit , Output , EventEmitter} from '@angular/core';
@@ -32,4 +32,14 @@ onClickBouton(){
 }
 // dans enfant .html 
 <button (click)="onClickBouton()"></button>
+
+// ajouter dans le composant enfant
+// dans la vue ajouter un nouveau bouton => <button class="btn btn-warning">-</button>
+
+// lorsque vous cliquez sur ce bouton, ça doit faire diminuer le nombre de like du parent 
+
+// méthode dans le composant enfant 
+// méthode dans le composant parent 
+
+// dans la balise <app-enfant></app-enfant> dans l'attribut change ajouter une nouvelle valeur 
 
