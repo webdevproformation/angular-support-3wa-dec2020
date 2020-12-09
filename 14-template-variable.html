@@ -1,0 +1,35 @@
+// dans les composants vous pouvez ajouter le symbole suivant
+
+// template variable 
+<h1 #titre></h1>
+// #titre => document.getElementById("titre")
+
+// récupérer des valeurs ou récupérer et modifier 
+
+créer un nouveau composant 
+ng g c form 
+
+dans la vue du composant 
+
+<form>
+    <input type="text" #nom placeholder="saisir votre nom" (keyup)="onKeyUpInput( nom )">
+</form>
+<p>{{ nomInput }}</p>
+
+dans le typescript du composant 
+
+export class FormComponent implements OnInit {
+
+    nomInput : string = "";
+    
+    constructor() { }
+  
+    ngOnInit(): void {
+    }
+  
+    onKeyUpInput( nom ){
+      this.nomInput = nom.value;
+    } 
+  
+  }
+// ressemble two way binding => [()] banane dans une boite 
