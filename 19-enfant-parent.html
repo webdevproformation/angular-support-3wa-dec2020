@@ -43,3 +43,52 @@ onClickBouton(){
 
 // dans la balise <app-enfant></app-enfant> dans l'attribut change ajouter une nouvelle valeur 
 
+
+dans le parent .ts 
+
+changeNbLike(){
+    this.meta.like++ ;
+  }
+
+  changeNbLikeDiminue(){
+    if(this.meta.like > 0){
+      this.meta.like-- ;
+    }
+  }
+
+parent.html 
+
+<app-enfant 
+[dataFromParent]="meta" 
+(change)="changeNbLike()" 
+(diminue)="changeNbLikeDiminue()">
+</app-enfant>
+
+dans l'enfant .ts 
+
+@Input() dataFromParent : any ;
+  @Output() change = new EventEmitter() ;
+  @Output() diminue = new EventEmitter() ;
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+
+  onClickAugmentLike():void{
+    // dans cette méthode il va falloir ajouter une fonction qui va être
+    // excutée dans le parent 
+    // parent.component.html  <app-enfant [dataFromParent]="meta" (change)="changeNbLike()"></app-enfant>
+    this.change.emit();
+  }
+  onClickDiminueLike():void {
+    this.diminue.emit();
+  }
+
+  // dans l'enfant .html 
+
+
+<li>
+    like <span class="badge badge-danger">{{dataFromParent.like}}</span> 
+    <button class="btn btn-primary btn-sm ml-4" (click)="onClickAugmentLike()">+</button>
+    <button class="btn btn-warning btn-sm ml-4" (click)="onClickDiminueLike()">-</button>
+</li>
