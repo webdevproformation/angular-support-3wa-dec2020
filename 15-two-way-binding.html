@@ -1,0 +1,72 @@
+// composant 
+
+// one way binding (association dans un seul sens )
+
+class .ts => html 
+attribut   => {{ attribut }} interpolation 
+attribut   =>   <img [src]="attribut" alt=""> property binding 
+
+html    =>  class .ts
+<p (click)="onClick()"> </p>    => méthode dans la class onClick(){}
+<p (click)="onClick($event)"> </p>    => méthode dans la class onClick($event){}
+
+<h1 #h1></h1>
+<p (click)="onClick($event , h1)"> </p>  => méthode dans la class onClick($event , h1){}
+
+two way binding 
+variable dans la vue html <=> synchronisée avec un attribut dans le typescript 
+dans la vue (html) => [()] => banane dans une boite 
+
+=> contact 
+
+
+// dans le fichier app.module.ts
+import { FormsModule } from '@angular/forms';
+
+imports: [
+  BrowserModule , 
+  FormsModule
+]
+
+// vue du composant 
+
+<h2>Nous contacter</h2>
+
+<form>
+    <div class="form-group">
+        <label for="email"> votre email</label>
+        <input type="text" [(ngModel)]="email" name="email" id="email"  class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="commentaire"> votre commentaire</label> <br>
+        <textarea name="commentaire" id="commentaire" [(ngModel)]="commentaire" class="form-control"></textarea>
+    </div>
+</form>
+
+<button (click)="onClickShowEmail()">voir email</button>
+
+// dans le typescript 
+
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-contact',
+  templateUrl: './contact.component.html',
+  styleUrls: ['./contact.component.scss']
+})
+export class ContactComponent implements OnInit {
+
+  email : string = "toto@yahoo.fr";
+  commentaire: string = "";
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+
+  onClickShowEmail():void{
+    console.log(this.email , this.commentaire)
+  }
+}
+
+
+// créer le 
