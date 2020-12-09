@@ -1,0 +1,50 @@
+// lorsque vous réalisez un interpolation dans la vue
+// utilisez la syntaxe suivante 
+// interpolation et transformer la variable à afficher 
+// pour les chaines de caractères 
+// uppercase / lowercase / titlecase (majuscule les première lettres)
+
+// les chiffres number
+// number / currency:"EUR" (ajouter à la fin de la variable à afficher une devise)
+// currency:"EUR":'symbol':'5.0-4'
+
+// date 
+// | date:"dd/MM/yyyy"
+
+// Build In Pipe => https://angular.io/guide/pipes
+
+{{ nom | uppercase }}
+
+// il est possible de créer ses propres pipe 
+
+// ng g pipe transformateur 
+
+créer un nouveau composant : recette 
+ng g c recette
+
+dans la partie typescript => 
+
+
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-recette',
+  templateUrl: './recette.component.html',
+  styleUrls: ['./recette.component.scss']
+})
+export class RecetteComponent implements OnInit {
+
+  dtPublication : Date = new Date();
+  titre : string = "Fondant au chocolat";
+  description : string = "lorem ipsum";
+  prix : number = 1423.542;
+  // google unsplash random
+  img : string = "https://source.unsplash.com/random/500x400";
+
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+
+}
+
