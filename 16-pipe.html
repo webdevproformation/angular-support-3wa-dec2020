@@ -119,3 +119,75 @@ afficher la video Youtube
 afficher l'image 
 les catégories dans une liste => titlecase 
 prix au format suivant : 50,36 €
+
+
+dans la partie ts 
+
+import { Component, OnInit } from '@angular/core';
+
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+registerLocaleData(localeFr, 'fr');
+
+import { DomSanitizer } from '@angular/platform-browser';
+
+@Component({
+  selector: 'app-film',
+  templateUrl: './film.component.html',
+  styleUrls: ['./film.component.scss']
+})
+export class FilmComponent implements OnInit {
+
+  titre : string = "Un jour sans fin";
+  resume  : string =  `Un jour sans fin (en anglais : Groundhog Day), ou Le Jour de la marmotte au Québec et au Nouveau-Brunswick, est une comédie fantastique américaine réalisée par Harold Ramis, écrite par Ramis et Danny Rubin et sortie en 1993.
+
+  Bill Murray y interprète Phil Connors, un cynique et misanthrope présentateur météo chargé de couvrir le traditionnel jour de la marmotte à Punxsutawney, petite ville de Pennsylvanie, et qui se retrouve bloqué dans une boucle temporelle le forçant à revivre indéfiniment ce qu'il estime être la journée la plus ennuyeuse. Andie MacDowell, Chris Elliott, Stephen Tobolowsky et Brian Doyle-Murray interprètent les autres personnages importants. `;
+
+  safeURL :any;
+  affiche : string = "https://source.unsplash.com/random/500x400"
+
+  categories : Array<string> = ["comédie" , "science fiction"];
+  prix : number = 50.357;
+
+  constructor(private _sanitizer: DomSanitizer) {
+
+    this.safeURL = this._sanitizer.bypassSecurityTrustResourceUrl("https://www.youtube.com/embed/vjbAdxpFPXU");
+   }
+
+  ngOnInit(): void {
+  }
+
+}
+
+----------------------------------
+
+dans la partie vue : 
+
+<article class="row">
+    <div class="col-4">
+        <img [src]="affiche" alt="" class="img-thumbnail img-fluid">
+    </div>
+    <div class="col-4">
+        <iframe height="315" [src]="safeURL" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="embed-responsive-item" ></iframe>
+    </div>
+    <div class="col-4">
+        <h2>{{titre | uppercase }}</h2>
+        <div>
+            {{resume}}
+        </div>
+        <ul>
+            <li *ngFor="let categorie of categories">{{ categorie | titlecase }}</li>
+        </ul>
+        <div>
+            prix : {{ prix | currency:"Eur":"symbol":"2.2-2":"fr" }}
+        </div>
+    </div>
+</article>
+
+------------------------- 
+
+dans la partie css 
+
+iframe{
+    max-width:100%;
+}
