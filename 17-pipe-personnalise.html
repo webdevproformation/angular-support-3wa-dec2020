@@ -42,3 +42,17 @@ dans la partie vue
 
 <div [innerHTML]="resume | nl2br">
 </div>
+
+
+// ajouter une image dans la balise img au niveau de l'attribut src 
+
+src="assets/nomfichier.jpg"
+
+=> pipe img 
+
+[src]="affiche | img"
+
+créer un nouveau pipe img => pas de paramètre 
+permettre de préfixer les images par le mot "assets/"+ nom du fichier.jpg 
+
+ng g p img 
