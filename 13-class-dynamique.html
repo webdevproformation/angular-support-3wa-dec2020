@@ -43,3 +43,34 @@ nav {
 }
 
 // nesting => imbrication 
+
+// si je clique sur le bouton dans le menu 
+// masquer le menu + changer le texte dans le bouton "Afficher le menu"
+
+// si je reclique sur le bouton dans le menu => fait l'inverse 
+
+
+<nav>
+    <button (click)="onClickMenu($event)">Masquer le menu</button>
+    <!-- ul>li*5>a[href="#"]>lorem1 -->
+    <ul [class.hide]="show">
+        <li><a href="#">Lorem.</a></li>
+        <li><a href="#">Aliquam.</a></li>
+        <li><a href="#">Animi!</a></li>
+        <li><a href="#">Possimus!</a></li>
+        <li><a href="#">Saepe!</a></li>
+    </ul>
+</nav>
+/: EventBinding => $event (récupérer l'événement) => target
+show: boolean = false;
+onClickMenu($event :any) :void{
+    // 1ère partie et // 2eme partie 
+    if($event.target.innerHTML == "Afficher le menu"){
+      $event.target.innerHTML = "Masquer le menu";
+      this.show =  false ;
+    }else{
+      $event.target.innerHTML = "Afficher le menu";
+      this.show = true ;
+    }
+  }
+
