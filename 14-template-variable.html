@@ -19,17 +19,31 @@ dans la vue du composant
 dans le typescript du composant 
 
 export class FormComponent implements OnInit {
-
     nomInput : string = "";
-    
     constructor() { }
-  
     ngOnInit(): void {
     }
-  
     onKeyUpInput( nom ){
       this.nomInput = nom.value;
     } 
-  
   }
 // ressemble two way binding => [()] banane dans une boite 
+// rdv dans 15 min => 11h18
+
+---------------- 
+créer un nouveau composant 
+
+newsletter 
+
+contenir le html suivant 
+<form>
+    <input type="email" #email placeholder="votre@email.fr">
+    <input type="submit">
+</form>
+<p class="alert alert-danger" #message></p>
+
+// lorsque l'on soumet le formulaire 
+// vérifier que le contenu de l'input de type email est conforme 
+// regex 
+// si c'est conforme => alert "le mail est enregistré en BDD"
+// si c'est non conforme =>  remplir la balise ayant la template variable #message
