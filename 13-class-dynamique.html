@@ -1,0 +1,45 @@
+1 créer un nouveau composant menu 
+
+ng g c menu
+
+2 une fois créé => il faut mettre la balise <app-menu></app-menu>
+
+dans le fichier src/app/app.component.html
+
+3 modifier la vue du composant 
+
+src/app/menu/menu.component.html
+
+<nav>
+    <button>Masquer le menu</button>
+    <!-- ul>li*5>a[href="#"]>lorem1 -->
+    <ul>
+        <li><a href="#">Lorem.</a></li>
+        <li><a href="#">Aliquam.</a></li>
+        <li><a href="#">Animi!</a></li>
+        <li><a href="#">Possimus!</a></li>
+        <li><a href="#">Saepe!</a></li>
+    </ul>
+</nav>
+
+4 un peu de style src/app/menu/menu.component.scss 
+
+nav {
+    display: flex;
+    align-items: center;
+    ul{
+        display: flex;
+        list-style:none;
+        align-items: center;
+        margin: 0;
+        li{
+            margin-right:10px
+        }
+    }
+}
+
+.hide{
+    display:none;
+}
+
+// nesting => imbrication 
