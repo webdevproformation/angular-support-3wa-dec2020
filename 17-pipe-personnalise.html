@@ -1,0 +1,44 @@
+// on vient de voir les pipes intégrés dans Angular 
+
+// il est possible de créer ses propres transformeurs 
+
+// comme pour les composants et comme pour les services 
+// manuellement
+// via le terminal 
+// ng g p nl2br
+
+// si j'ai une chaine de caractère transformer les sauts de lignes dans la chaine de caractères en la balise <br> 
+
+
+let a = `hello
+les amis`;
+
+"hello<br>les amis";
+
+// ng g p nl2br
+
+CREATE src/app/nl2br.pipe.ts (215 bytes)
+UPDATE src/app/app.module.ts (1125 bytes)
+
+
+dans le pipe personnalisé :
+
+import { Pipe, PipeTransform } from '@angular/core';
+
+@Pipe({
+  name: 'nl2br'
+})
+export class Nl2brPipe implements PipeTransform {
+
+  transform(texte : string ): string {
+    return texte.replace(/\n/g, '<br>');
+  }
+
+}
+// https://www.itsolutionstuff.com/post/angular-nl2br-pipe-exampleexample.html
+
+
+dans la partie vue 
+
+<div [innerHTML]="resume | nl2br">
+</div>
