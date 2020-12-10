@@ -169,7 +169,48 @@ export class ListeArticlesComponent implements OnInit {
                 {{tag}}
             </li>
         </ul>
-        <a href="" class="btn btn-sm btn-info">Lire la suite</a>
+        <a routerLink="/articles/{{article._id}}" class="btn btn-sm btn-info">Lire la suite</a>
     </article>
 </div>
 
+// retourner dans le fichier app.module.ts 
+
+et nous allons ajouter une nouvelle route 
+
+imports: [
+BrowserModule ,
+RouterModule.forRoot([
+ { path : '' , component: AccueilComponent  },
+ { path : 'contact' , component: ContactComponent } ,
+ { path : "articles/:id" , component: ArticleComponent },
+ { path : "articles" , component: ListeArticlesComponent }
+])
+],
+
+
+// allez dans le composant => Article => ts 
+
+import {  ActivatedRoute , Router } from "@angular/router";
+
+// deux services que l'on va utiliser pour récupérer l'adresse de la page en cours 
+
+// dans le constructeur de class => DI 
+
+constructor( 
+        private router :Router , 
+        private activeRoute : ActivatedRoute
+  ) { }
+
+  url:string ;
+
+  ngOnInit(): void {
+    this.activeRoute.paramMap
+    .subscribe( ( params ) => {
+      this.url = params.get("id") 
+      // pause => 
+      // ajouter dans le service data un méthode find(id)
+      rechercher dans le tableau getAll(), élément qui a un id qui match 
+      // récupérer l'élement => afficher à l'écran 
+      // rdv 16h16 à toute suite !
+    } )
+  }
