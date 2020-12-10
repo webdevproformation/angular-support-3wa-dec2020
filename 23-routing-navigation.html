@@ -298,4 +298,128 @@ enfant de liste article
 => 16h53 - correction
 
 
+// accueil .ts 
 
+import { Component, OnInit } from '@angular/core';
+
+import { DataService } from './../data.service';
+
+@Component({
+  selector: 'app-accueil',
+  templateUrl: './accueil.component.html',
+  styleUrls: ['./accueil.component.scss']
+})
+export class AccueilComponent implements OnInit {
+  articles: any ;
+  constructor( private dataService : DataService) { }
+
+  ngOnInit(): void {
+    this.articles = this.dataService.getLast(3)
+  }
+
+}
+
+
+// accueil .html 
+
+<div class="row">
+    <app-article-detail [article]="article" *ngFor="let article of articles"></app-article-detail>
+</div>
+
+
+// article-detail.ts 
+
+import { Component, Input, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-article-detail',
+  templateUrl: './article-detail.component.html',
+  styleUrls: ['./article-detail.component.scss']
+})
+export class ArticleDetailComponent implements OnInit {
+  @Input() article ;
+
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+
+}
+ // article-detail. html 
+
+ <article class="col-3 mt-3">
+    <header class="d-flex justify-content-between align-items-center">
+        <h2>{{article.company}}</h2>
+        <img [src]="article.picture" alt="" class="img-thumbnail">
+    </header>
+    <div>{{article.about}}</div>
+    <ul class="d-flex">
+        <li *ngFor="let tag of article.tags" class="badge badge-success mr-2 my-2">
+            {{tag}}
+        </li>
+    </ul>
+    <a routerLink="/articles/{{article._id}}" class="btn btn-sm btn-info">Lire la suite</a>
+</article>
+
+// article-detail.scss 
+
+ul{
+    list-style: none;
+    padding: 0;
+    flex-wrap: wrap;
+}
+
+article {
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+
+// liste-article .ts 
+
+import { Component, OnInit } from '@angular/core';
+
+import { DataService } from './../data.service';
+
+@Component({
+  selector: 'app-liste-articles',
+  templateUrl: './liste-articles.component.html',
+  styleUrls: ['./liste-articles.component.scss']
+})
+export class ListeArticlesComponent implements OnInit {
+  articles : Array<any>
+  constructor( private data : DataService) { }
+
+  ngOnInit(): void {
+    this.articles = this.data.getAll();
+  }
+
+}
+
+// liste des article .html 
+
+
+<div class="row">
+    <app-article-detail [article]="article" *ngFor="let article of articles"></app-article-detail>
+</div>
+
+
+// liste des article .scss 
+
+.row > * {
+    flex: 0 0 25%;
+    max-width: 25%;
+}
+
+// service data .ts 
+
+  getLast<T>( nb:number ){
+    return this.getAll().slice(0,nb);
+  }
+
+  find (id:string): any {
+    
+   let resultat = this.getAll().find( (item) =>{ 
+      return item._id === id
+    } );
+    return resultat;
+  }
