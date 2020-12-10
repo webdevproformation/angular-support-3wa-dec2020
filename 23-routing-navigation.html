@@ -1,0 +1,76 @@
+// jusqu'à maintenant 
+// application web mono page 
+
+// à partir de maintenant 
+// refaire une barre de menu 
+// => changer de page 
+// page d'accueil 
+// page de contact => formulaire
+// liste d'article 
+    // cliquer sur un des liens dans la page article => l'article concerné 
+
+// créer une barre de menu 
+ng g c menu 
+
+// placer la balise dans le app.component.html
+
+// vue du composant => menu.component.html
+
+//une fois que le menu est créé => utilise Module Router 
+// installé dans Angular => https://angular.io/guide/router
+
+// app.module.ts 
+// activer le module Router 
+
+import { RouterModule }  from '@angular/router' ;
+
+
+imports: [
+   BrowserModule ,
+   RouterModule
+],
+
+// créer un nouveau composant => encharge d'afficher la page de contact 
+// lorsque l'on cliquera sur le lien contact dans la barre de menu 
+
+ng g c contact 
+
+
+// app.module.ts 
+RouterModule.forRoot([
+     un url => un composant à afficher 
+     { path : 'contact' , component: ContactComponent }
+])
+
+
+// app.component.html (à la suite du menu)
+<router-outlet></router-outlet>
+
+
+// mis à jour du composant menu => mettre le lien à la place du # dans la balise a 
+
+// menu.component.html
+
+
+<li class="nav-item">
+    <a href="#" class="nav-link">Contact</a>
+</li>
+
+<li class="nav-item">
+    <a routerLink="/contact" class="nav-link">Contact</a>
+</li>
+
+<!--  l'attribut routerLink => éviter lorsque l'on clique sur une lien 
+de reccharger intégralement tous les sources 
+=> SPA : Single Page Application 
+Une fois que vous avez charger votre site => il n'y a plus de rechargement 
+des fichiers sources de votre application 
+-->
+// cas pratique : créer une nouveau composant 
+// liste-articles
+
+// associer l'adresses articles => ListeArticles (app.module.ts) 
+
+// mettre à jour le composant menu => cliquer sur le liens Articles > le composant
+liste-articles
+
