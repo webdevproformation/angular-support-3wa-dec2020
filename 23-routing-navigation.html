@@ -214,3 +214,35 @@ constructor(
       // rdv 16h16 à toute suite !
     } )
   }
+
+ // aller dans le service data service 
+
+
+ ajouter la méthode find()
+
+
+find (id:string): any {
+    
+    let resultat = this.getAll().find( (item) => { 
+        item._id === id
+    } );
+    return resultat;
+}
+
+// dans le composant article 
+// import { DataService } from './../data.service';
+
+constructor( 
+        private router :Router , 
+        private activeRoute : ActivatedRoute,
+        private articleData : DataService
+  ) { }
+
+  ngOnInit(): void {
+    this.activeRoute.paramMap
+    .subscribe( ( params ) => {
+      this.url = params.get("id") ;
+      let resultat = this.articleData.find(this.url)
+      console.log(resultat);
+    } )
+  }
