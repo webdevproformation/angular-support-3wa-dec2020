@@ -172,6 +172,71 @@ Belgique => fond bleu et le texte belgique
 bg-primary 
 
 
+// exo.ts 
+
+
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-exo',
+  templateUrl: './exo.component.html',
+  styleUrls: ['./exo.component.scss']
+})
+export class ExoComponent implements OnInit {
+  message : string ;
+  isValidEmail: boolean = false;
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+
+  onModifEmail($event){
+    let valeurSaisie = $event.target.value;
+    console.log(valeurSaisie);
+    if(valeurSaisie.length <= 4 ){
+      this.message = "veuillez finir de compléter le champ email";
+    }else{
+      this.message = "";
+    }
+    let patternEmail = /^[a-zA-Z0-9_\.\-]{1,}@[a-zA-Z0-9_\-]{1,}\.[a-z]{2,10}$/;
+
+    if( patternEmail.test(valeurSaisie) ){
+      this.message = "email conforme";
+      this.isValidEmail = true;
+    }else {
+      this.isValidEmail = false;
+    }
+
+  }
+
+}
+
+// exo.html 
+
+
+<div class="row">
+    <form class="col-6">
+        <div class="form-group"> 
+            <label for="email">email</label>
+            <input 
+                type="text" 
+                class="form-control" 
+                id="email"  
+                (keyup)="onModifEmail($event)">
+            <p [ngClass]="{'text-success':isValidEmail} ">{{message}}</p>
+        </div>
+        <div class="form-group">
+            <label for="pays">Pays</label>
+            <select name="" id="pays" class="form-control">
+                <option value=""></option>
+                <option value="France">France</option>
+                <option value="Allemagne">Allemagne</option>
+                <option value="Belgique">Belgique</option>
+            </select>
+            <p></p>
+        </div>
+    </form>
+</div>
 
 
 
