@@ -68,9 +68,67 @@ des fichiers sources de votre application
 -->
 // cas pratique : créer une nouveau composant 
 // liste-articles
+ng g c liste-articles
 
 // associer l'adresses articles => ListeArticles (app.module.ts) 
+
+RouterModule.forRoot([
+{ path : 'contact' , component: ContactComponent } ,
+{ path : "articles" , component: ListeArticlesComponent }
+])
 
 // mettre à jour le composant menu => cliquer sur le liens Articles > le composant
 liste-articles
 
+------ 
+dans le composant menu => si vous ajoutez la class active dans le lien 
+
+routerLinkActive="active"
+
+------ 
+
+créer un nouveau composant 
+ng g c accueil 
+{ path : '' , component: AccueilComponent  }
+
+// à mettre au début !
+
+dans la barre de menu  
+routerLink="/" 
+class="nav-link" 
+routerLinkActive="active"
+[routerLinkActiveOptions]="{ exact: true }"
+
+------ 
+
+rappel pour créer un service :
+ng g s data 
+
+=> class 
+=> méthode getAll(){
+    return [ 
+
+    ]
+}
+
+// google => json generator => https://www.json-generator.com/
+// collez la valeur dans la méthode getAll()
+
+
+// cas pratique => utiliser le service data dans le composant ListeArticleComponent 
+
+// dans le composant ListeArticleComponent 
+créer une variable articles => initialiser avec le contenu des données dans le service data 
+
+// dans la vue du composant 
+
+// boucle *ngFor 
+
+<div class="row">
+    <article class="col-3" *ngFor>
+        <h2>company</h2>
+        <p>about</p>
+        liste de méta => tags
+        <a href="">lire la suite </a>
+    </article>
+</div>
