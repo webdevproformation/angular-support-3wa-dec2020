@@ -174,7 +174,6 @@ bg-primary
 
 // exo.ts 
 
-
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -185,6 +184,7 @@ import { Component, OnInit } from '@angular/core';
 export class ExoComponent implements OnInit {
   message : string ;
   isValidEmail: boolean = false;
+  messagePays: string ;
   constructor() { }
 
   ngOnInit(): void {
@@ -209,11 +209,20 @@ export class ExoComponent implements OnInit {
 
   }
 
+  onModifSelect($event){
+    //console.log();
+    let paysSelectionne = $event.target.value
+    if(paysSelectionne != ""){
+      this.messagePays = paysSelectionne
+    }else{
+      this.messagePays = "";
+    }
+    
+  }
+
 }
 
 // exo.html 
-
-
 <div class="row">
     <form class="col-6">
         <div class="form-group"> 
@@ -227,17 +236,26 @@ export class ExoComponent implements OnInit {
         </div>
         <div class="form-group">
             <label for="pays">Pays</label>
-            <select name="" id="pays" class="form-control">
+            <select name="" id="pays" class="form-control" #pays (change)="onModifSelect($event)">
                 <option value=""></option>
                 <option value="France">France</option>
                 <option value="Allemagne">Allemagne</option>
                 <option value="Belgique">Belgique</option>
             </select>
-            <p></p>
+            <p [ngClass]="{
+                'bg-warning' : messagePays == 'France',
+                'bg-secondary' : messagePays == 'Allemagne',
+                'bg-primary' : messagePays == 'Belgique',
+                'bg-white' : messagePays == ''
+            }">{{messagePays}}</p>
         </div>
     </form>
 </div>
-
+<!-- 
+    autre solution 
+    tableau dans le ts 
+    *ngFor
+-->
 
 
 
