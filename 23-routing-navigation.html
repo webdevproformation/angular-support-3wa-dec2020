@@ -132,3 +132,44 @@ créer une variable articles => initialiser avec le contenu des données dans le
         <a href="">lire la suite </a>
     </article>
 </div>
+
+
+// liste-article.ts 
+
+import { Component, OnInit } from '@angular/core';
+
+import { DataService } from './../data.service';
+
+@Component({
+  selector: 'app-liste-articles',
+  templateUrl: './liste-articles.component.html',
+  styleUrls: ['./liste-articles.component.scss']
+})
+export class ListeArticlesComponent implements OnInit {
+  articles : Array<any>
+  constructor( private data : DataService) { }
+
+  ngOnInit(): void {
+    this.articles = this.data.getAll();
+  }
+
+}
+
+// liste-article.html 
+
+<div class="row">
+    <article class="col-3 mt-3" *ngFor="let article of articles">
+        <header class="d-flex justify-content-between align-items-center">
+            <h2>{{article.company}}</h2>
+            <img [src]="article.picture" alt="" class="img-thumbnail">
+        </header>
+        <div>{{article.about}}</div>
+        <ul class="d-flex">
+            <li *ngFor="let tag of article.tags" class="badge badge-success mr-2 my-2">
+                {{tag}}
+            </li>
+        </ul>
+        <a href="" class="btn btn-sm btn-info">Lire la suite</a>
+    </article>
+</div>
+
