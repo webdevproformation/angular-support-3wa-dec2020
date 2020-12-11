@@ -143,4 +143,43 @@ le ficheir .html
     </div>
 </form>
 
+----- 
+
+relation directe entre le ts et la vue  
+
+=> ajouter des tester => afficher visuellement des informations à l'internaute pour qu'il comprenne comment utiliser le formulaire  
+
+au niveau des champs => required attribut html 5 
+forcer l'utilisateur à remplir les champs 
+
+qu'est ce qui est attendu 
+=> html5 => input 
+minlength : https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/minlength
+maxlength : https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/maxlength
+pattern : https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/pattern
+
+email 
+
+
+<input 
+            type="email" 
+            id="email" 
+            name="email" 
+            class="form-control"
+            ngModel
+            #email="ngModel"
+            (change)="onChangeEmail(email)"
+            required 
+            minlength="5"
+            maxlength="60"
+            pattern="[a-zA-Z0-9\.\-_]+@[a-zA-Z0-9\-_]+\.[a-z]{2,4}$">
+            <div class="alert alert-danger" *ngIf="email.touched && !email.valid">
+                <ul class="mb-0">
+                    <li *ngIf="email.errors.required">Email requis</li>
+                    <li *ngIf="email.errors.minlength">Email doit avoir au moins 5 caractères</li>
+                    <li *ngIf="email.errors.maxlength">Email doit avoir au maximum 60 caractères</li>
+                    <li *ngIf="email.errors.pattern">Email doit avoir une forme d'email</li>
+                </ul>
+            </div>
+
 
