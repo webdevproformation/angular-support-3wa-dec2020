@@ -2,7 +2,7 @@
 
 créer un formulaire de contact : 4 champs 
 
-a/ input => email 
+a/ input => email : votre email 
 b/ select => l'internaute va choisir le destinataire du mail 
      webmaster
      service commercial
@@ -14,3 +14,133 @@ d/ bouton de soumission
 récupérer les données qui sont saisies et les affichés dans la console pour l'instant 
 
 two way binding // variables de template 
+
+------------------------------ 
+
+design en html 
+
+<h1>Nous contacter</h1>
+<p>Vous avez un problème merci de remplir le formulaire ci dessous et nous revenons vers vous au plus vite !</p>
+<form>
+    <div class="form-group">
+        <label for="email">votre email</label>
+        <input type="email" id="email" name="email" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="service">vous voulez contacter :</label>
+        <select name="service" id="service" class="form-control">
+            <option value=""></option>
+            <option value="webmaster">webmaster</option>
+            <option value="service commercial">service commercial</option>
+            <option value="sav">sav</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="commentaire">Votre commentaire</label>
+        <textarea name="commentaire" id="commentaire" cols="30" class="form-control"></textarea>
+    </div>
+    <div class="form-group d-flex justify-content-between">
+        <input type="submit" class="btn btn-outline-warning">
+        <a routerLink="/"  class="btn btn-primary">retour à l'accueil</a>
+    </div>
+</form>
+
+
+2 manières de faire 
+
+variables de template => #sur input / select / textarea 
+
+two way binding  
+=> app.module.ts 
+Activer le FormModules 
+
+import { FormsModule } from "@angular/forms" ;
+
+ajouter dans imports: [ 
+ //...
+ FormsModule 
+]
+
+sur chaque champ du formulaire 
+[(ngModel)]="variable" 
+
+re créer dans le fichier .ts 
+variable 
+
+----------------------------- 
+
+le fichier .ts 
+
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-contact',
+  templateUrl: './contact.component.html',
+  styleUrls: ['./contact.component.scss']
+})
+export class ContactComponent implements OnInit {
+  email:string;
+  service : string;
+  commentaire : string
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+  onSubmitContact($event) :void{
+    $event.preventDefault();
+    console.log( 
+      this.email,
+      this.service,
+      this.commentaire
+    )
+  }
+}
+
+-------------------- 
+
+le ficheir .html 
+
+<h1>Nous contacter</h1>
+<p>Vous avez un problème merci de remplir le formulaire ci dessous et nous revenons vers vous au plus vite !</p>
+<form>
+    <div class="form-group">
+        <label for="email">votre email</label>
+        <input 
+            type="email" 
+            id="email" 
+            name="email" 
+            class="form-control"
+            [(ngModel)]="email">
+    </div>
+    <div class="form-group">
+        <label for="service">vous voulez contacter :</label>
+        <select 
+            name="service" 
+            id="service" 
+            class="form-control"
+            [(ngModel)]="service">
+            <option value=""></option>
+            <option value="webmaster">webmaster</option>
+            <option value="service commercial">service commercial</option>
+            <option value="sav">sav</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="commentaire">Votre commentaire</label>
+        <textarea 
+            name="commentaire" 
+            id="commentaire" 
+            cols="30" 
+            class="form-control"
+            [(ngModel)]="commentaire"></textarea>
+    </div>
+    <div class="form-group d-flex justify-content-between">
+        <input 
+            type="submit" 
+            class="btn btn-outline-warning" 
+            (click)="onSubmitContact($event)">
+        <a routerLink="/"  class="btn btn-primary">retour à l'accueil</a>
+    </div>
+</form>
+
+
