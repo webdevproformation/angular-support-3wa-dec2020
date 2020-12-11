@@ -211,3 +211,39 @@ maxlength="100"></textarea>
     </ul>
 </div>
 
+
+-------------------- 
+
+ngForm => 
+remplacer le fait d'écouter le click sur le bouton submit 
+
+enlever la méthode (click) sur le bouton submit
+
+(click)="onSubmitContact($event)"
+
+dans la balise 
+
+<form #f="ngForm" (submit)="onSubmit(f)">
+
+
+
+onSubmitFormulaire(f){
+    /*  console.log(f); */
+        console.log(f.value); // contient l'ensemble des informations saisis dans le formulaire
+        // appeler un service => stocker les informations en base de données
+        // appeler un service qui va se charger d'envoyer un email 
+        f.reset(); // vider tous les champs
+}
+
+<form (ngSubmit)="onSubmit()"> 
+
+</form>
+
+onSubmit(){
+    // récupérer chaque champ de votre formulaire via une variable de template 
+    /// tester 
+    // si ok 
+    // traitement et reset 
+
+    // si un n'est pas bon => envoyer une message d'alert 
+}
