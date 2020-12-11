@@ -193,3 +193,21 @@ email
 // veuillez afficher sous le champ commentaire un message explicite pour lui expliquer ce qui ne va pas 
 
 
+<textarea 
+name="commentaire" 
+id="commentaire" 
+cols="30" 
+class="form-control"
+ngModel
+#commentaire="ngModel"
+required
+minlength="10"
+maxlength="100"></textarea>
+<div class="alert alert-danger" *ngIf="commentaire.touched && !commentaire.valid">
+    <ul class="mb-0">
+        <li *ngIf="commentaire.errors.required">Veuillez compléter ce champ</li>
+        <li *ngIf="commentaire.errors.minlength">le champ doit avoir au minimum 10 caractères</li>
+        <li *ngIf="commentaire.errors.maxlength">le champ doit avoir au maximum 100 caractères</li>
+    </ul>
+</div>
+
