@@ -10,3 +10,28 @@ getAll() retourner tous les albums disponibles
 find(id) retourner l'album qui a l'id sélectionné 
 
 // ------------------
+
+ng g s services/music
+
+import { Injectable } from '@angular/core';
+
+import { ALBUMS } from './mock-albums';
+import { Album } from "./album";
+
+@Injectable({
+  providedIn: 'root'
+})
+export class MusicService {
+
+  constructor() { }
+
+  getAll<T>() : Array<Album>{
+    return ALBUMS;
+  }
+
+  find<T>( id:string ){
+    return this.getAll().find( (item) => {
+      return item.id === id ;
+    } );
+  }
+}
