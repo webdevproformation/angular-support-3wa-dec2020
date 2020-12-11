@@ -74,7 +74,6 @@ duree 600 min  => convertir en heures / min  => 10h00
 
 dans 1 heure => 60 min 
 
-
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
@@ -87,8 +86,14 @@ export class HeureminutePipe implements PipeTransform {
     // 3h 
     // 210 - 3 * 60 = 210 - 180 = 30min 
     let nbHeure = Math.floor(duree / 60);
-    let nbMin = duree % 60; 
+    let nbMin :any = duree % 60;  
+    
+    if(nbMin <=9){
+      nbMin = "0" + nbMin ;
+    }
     return `${nbHeure}h${nbMin}min`;
   }
 
 }
+
+// ------
