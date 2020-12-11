@@ -79,7 +79,7 @@ export class AlbumsComponent implements OnInit {
 
 // app. ts
 
-import { Component , OnChanges } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -90,8 +90,6 @@ export class AppComponent {
   title :string = 'app-music';
   
   albumEncours : number = 1;
-
-  OnChanges():void{}
 
   updateAlbumEncours ($event){
       this.albumEncours = $event;
