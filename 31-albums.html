@@ -39,9 +39,9 @@ dans la vue mettre la card
     <div class="card-body">
         <h5 class="card-title">{{ album.title}}</h5>
         <p class="card-text">{{ album.description }}</p>
-        <a class="btn btn-outline-primary" href="#" role="button"
+        <a class="btn btn-outline-primary mr-2" href="#" role="button"
         *ngFor="let tag of album.tags">{{ tag }}</a>
-        <a class="btn btn-outline-dark" href="#" role="button">guitar</a>
+        <a class="btn btn-outline-dark mr-3" href="#" role="button">guitar</a>
         <img class="glyph-icon" src="./assets/svg/si-glyph-heart.svg" />
         <small>7</small>
         <img class="glyph-icon" src="./assets/svg/si-glyph-timer-2.svg" />
@@ -66,3 +66,29 @@ dans la vue mettre la card
  mr 
  ml
 // https://getbootstrap.com/docs/4.0/utilities/spacing/
+
+
+// créer un pipe heureminute 
+duree 600 min  => convertir en heures / min  => 10h00
+10 h 00 
+
+dans 1 heure => 60 min 
+
+
+import { Pipe, PipeTransform } from '@angular/core';
+
+@Pipe({
+  name: 'heureminute'
+})
+export class HeureminutePipe implements PipeTransform {
+
+  transform(duree: number): string {
+    // 210 min => 60 = 3.5
+    // 3h 
+    // 210 - 3 * 60 = 210 - 180 = 30min 
+    let nbHeure = Math.floor(duree / 60);
+    let nbMin = duree % 60; 
+    return `${nbHeure}h${nbMin}min`;
+  }
+
+}
