@@ -1,0 +1,41 @@
+// vider le fichier app.component.html 
+
+// créer le dossier jour3 dans le dossier src/app
+
+créer deux fichiers dans le dossier jour3
+app.module.ts.back  => copie du fichier => app.module.ts
+app.component.html.back => copie du fichier => app.component.html
+
+réinitialiser la vue 
+
+app.component.html
+
+<div class="container">
+    <h1>app musique</h1>
+</div>
+
+
+app.module.ts
+
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+
+import { AppComponent } from './app.component';
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule 
+  ],
+  providers: 
+  [
+  ],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+
+// tous les composants / services / pipe 
+// ranger dans le dossier jour3 
+
